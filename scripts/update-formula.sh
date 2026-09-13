@@ -46,10 +46,13 @@ class Zap < Formula
   license "MIT"
 
   on_macos do
-    on_arm do
-      url "https://github.com/$REPO/releases/download/v#{version}/zap-aarch64-apple-darwin"
-      sha256 "$darwin_sha"
-    end
+    # No Intel macOS build: the toolchain (Homebrew's llvm) dropped it, and
+    # the release assets do not cover it (see zap#58). Without this, brew
+    # rejects the formula on Intel ("Invalid formula") rather than saying
+    # the architecture is unsupported.
+    depends_on arch: :arm64
+    url "https://github.com/$REPO/releases/download/v#{version}/zap-aarch64-apple-darwin"
+    sha256 "$darwin_sha"
   end
 
   on_linux do
@@ -60,7 +63,8 @@ class Zap < Formula
   end
 
   def install
-    bin.install Dir["zap-*"].first => "zap"
+    binary = Dir["zap-*"].first
+    bin.install binary => "zap"
   end
 
   test do
