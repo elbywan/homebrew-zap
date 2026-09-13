@@ -2,7 +2,7 @@
 class Zap < Formula
   desc "Fast, reliable and memory efficient JavaScript package manager"
   homepage "https://github.com/elbywan/zap"
-  version "0.10.0"
+  version "0.10.1"
   license "MIT"
 
   on_macos do
@@ -12,7 +12,7 @@ class Zap < Formula
     # the architecture is unsupported.
     depends_on arch: :arm64
     url "https://github.com/elbywan/zap/releases/download/v#{version}/zap-aarch64-apple-darwin"
-    sha256 "d13fa16ab3b377d0171c43df8deb1cd1199e061171681afae1cd23a9aebd8d2a"
+    sha256 "b482cfafda339a53ec72e1ef1d70e04831f9fb43df6435e8cc48364e7245eaad"
   end
 
   on_linux do
@@ -20,7 +20,7 @@ class Zap < Formula
     # simulates linux/arm64 (see the mac block above).
     depends_on arch: :x86_64
     url "https://github.com/elbywan/zap/releases/download/v#{version}/zap-x86_64-unknown-linux-musl"
-    sha256 "b8ea88c13d62f136b43b6983eb559ac32a7aa182ad5e60710eac641be2847d49"
+    sha256 "0a6d7dd4fc446d5b3b5e96dd67f37646bc90b571d4a73a8dce7a996eb1c72c75"
   end
 
   def install
