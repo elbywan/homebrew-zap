@@ -69,7 +69,9 @@ class Zap < Formula
 end
 EOF
 
-if git diff --quiet -- "$FORMULA"; then
+# git diff does not see a freshly created file (it is untracked), so ask
+# for the status instead: empty porcelain output means nothing changed.
+if [[ -z "$(git status --porcelain -- "$FORMULA")" ]]; then
   echo "Formula is up to date with $tag."
   exit 0
 fi
