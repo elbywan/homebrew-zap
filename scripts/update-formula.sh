@@ -56,10 +56,11 @@ class Zap < Formula
   end
 
   on_linux do
-    on_intel do
-      url "https://github.com/$REPO/releases/download/v#{version}/zap-x86_64-unknown-linux-musl"
-      sha256 "$linux_sha"
-    end
+    # The release assets only cover x86_64 Linux, and the same validation
+    # simulates linux/arm64 (see the mac block above).
+    depends_on arch: :x86_64
+    url "https://github.com/$REPO/releases/download/v#{version}/zap-x86_64-unknown-linux-musl"
+    sha256 "$linux_sha"
   end
 
   def install
