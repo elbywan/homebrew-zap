@@ -1,0 +1,9 @@
+# Homebrew tap for [zap](https://github.com/elbywan/zap)
+
+```bash
+brew install elbywan/zap/zap
+```
+
+`Formula/zap.rb` is generated from the latest [zap release](https://github.com/elbywan/zap/releases) by [the update workflow](.github/workflows/update-formula.yml), which runs hourly and on demand — do not edit it by hand.
+
+The formula installs the published binaries, for Apple silicon macOS and x86_64 Linux.

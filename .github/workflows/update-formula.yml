@@ -1,0 +1,24 @@
+name: Update formula
+
+# Pull-based on purpose: zap's release workflow would need a token with write
+# access here to push, whereas this repository can read the public releases
+# API with its own token. The hourly run bounds the delay between a release
+# and `brew upgrade` picking it up.
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Regenerate Formula/zap.rb from the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./scripts/update-formula.sh
